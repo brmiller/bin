@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Use this script in Skype | Options | Notifications | Chat Message Received
+# under Advanced View | Execute the following script:
+#
+# skype-notify "%sname" "%smessage"
+#
+# Then disable the built-in skype "Display pop-up notification".
+# Now all message received notifications will be directed through
+# dbus.  Your window manager should already be listening to dbus
+# messages and will display the message in the window manager-styled
+# text notification (usually in the upper-right corner).
+#
+# This can often integrate better than the skype-generated notification
+# which I've observed to be in the lower-right corner, on another
+# monitor/screen, etc.
+
+
+name="$1"
+message="$2"
+
+notify-send "$name" "$(fold -sw 50 <<< "$message")"
