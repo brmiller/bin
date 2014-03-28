@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# A find wrapper to recursively grep files of a particular file type for
+# a word or phrase.  Symlink this script as 'findjava' to locate a search
+# term among java source, 'findjs' to locate a search term among javascript
+# source, and so on.
+#
+# Usage: findjava Class\.forName
+
+
+filetype="$(basename "$0" | sed 's/find//g')"
+
+find . -name "*.$filetype" -type f ! -path ".svn" ! -path ".git" -exec grep -i "$@" {} /dev/null \;
