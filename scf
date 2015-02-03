@@ -1,0 +1,1 @@
+svn status | grep ^M | awk '{print $2}'
